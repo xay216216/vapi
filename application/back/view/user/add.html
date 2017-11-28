@@ -1,0 +1,97 @@
+{layout name="layout" /}
+
+<!-- Content -->
+<section id="content" class="container">
+	<!-- Breadcrumb -->
+	{include file="public/breadcrumb"/}
+	<h4 class="page-title b-0">用户添加</h4>
+
+	<div class="listview list-container">
+		<header class="listview-header media">
+			<ul class="list-inline list-mass-actions pull-left">
+				<li>
+					<a data-toggle="modal" href="{:url('back/groupname/add')}" title="Add" class="tooltips">
+						<i class="sa-list-add"></i>
+					</a>
+				</li>
+
+				<li class="show-on" style="display: none;">
+					<a href="" title="Delete" class="tooltips">
+						<i class="sa-list-delete"></i>
+					</a>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</header>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">用户添加</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-8">
+								<form action="{:url('back/user/add')}" class="form-horizontal ajax-form" method="post">
+									<div class="form-group">
+										<label for="inputrole_id" class="col-sm-3 control-label">用户组</label>
+										<div class="col-sm-5">
+											<select name="id" id="inputrole_id" class="form-control">
+												<option value="">请选择用户组</option>
+												{volist name="groupRows" id="vo"}
+												<option value="{$vo.id}">{$vo.title}</option>
+
+												{/volist}
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputname" class="col-sm-3 control-label">用户姓名</label>
+										<div class="col-sm-5">
+											<input type="text" class="form-control" name="name" id="inputname" value="" placeholder="用户姓名">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputpassword" class="col-sm-3 control-label">用户密码</label>
+										<div class="col-sm-5">
+											<input type="password" class="form-control" name="password" id="inputpassword" placeholder="用户密码">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="inputrepassword" class="col-sm-3 control-label">确认密码</label>
+										<div class="col-sm-5">
+											<input type="password" class="form-control" name="repassword" id="inputrepassword" placeholder="确认密码">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="" class="col-sm-3 control-label">头像</label>
+										<div class="col-sm-5">
+											<img src="" style="max-width:100px; max-height:100px;" id="head" class="img-circle upload">
+											<input type="hidden" name="head" value="" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label" for="inputstatus"> 是否启用 </label>
+										<div class="col-sm-5">
+											<input type="checkbox" name="status" id="inputstatus" value="1">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-9">
+											<button type="submit" class="btn btn-primary">提交</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

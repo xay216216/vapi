@@ -1,0 +1,68 @@
+{layout name="layout" /}
+
+<!-- Content -->
+<section id="content" class="container">
+	<!-- Breadcrumb -->
+	{include file="public/breadcrumb"/}
+	<h4 class="page-title b-0">渠道列表</h4>
+
+	<div class="listview list-container">
+		<header class="listview-header media">
+			<ul class="list-inline list-mass-actions pull-left">
+				<!-- <li>
+					<a data-toggle="modal" href="{:url('back/channeldao/add')}" title="Add" class="tooltips">
+						<i class="sa-list-add"></i>新增渠道
+					</a>
+				</li>
+				<li class="show-on" style="display: none;">
+					<a href="" title="Delete" class="tooltips">
+						<i class="sa-list-delete"></i>
+					</a>
+				</li> -->
+			</ul>
+			<div class="clearfix"></div>
+		</header>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">渠道统计列表</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12">
+
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table  table-bordered table-hover">
+								<tr>
+									<th>序号</th>
+									<th>渠道号</th>
+									<th>数量</th>
+									<!-- <th>操作</th> -->
+								</tr>
+
+								{volist name="dataList" id="dataList"}
+								<tr>
+									<td>
+										{$dataList['xuhao']}
+									</td>
+									<td>{$dataList['channel_num']}</td>
+									<td>{$dataList['count_num']}</td>
+
+									<!-- <td>
+										<a class="btn btn-xs btn-default">编辑</a>
+										<a class="btn btn-xs btn-default delete">删除</a>
+									</td> -->
+								</tr>
+								{/volist}
+							</table>
+						</div>
+					</div>
+					<div class="panel-footer text-center">
+						{$page}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

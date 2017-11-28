@@ -1,0 +1,8 @@
+    {if condition="isset($breadcrumb)"}
+        <ol class="breadcrumb hidden-xs">
+             <li><a href="{:url('index/index')}">首页</a></li>
+            {volist name="$breadcrumb" id="vo"}
+            <li><a href="">{$vo.title}</a></li>
+            {/volist}
+        </ol>
+    {/if}

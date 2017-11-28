@@ -1,0 +1,55 @@
+{layout name="layout" /}
+
+<!-- Content -->
+<section id="content" class="container">
+	<!-- Breadcrumb -->
+	{include file="public/breadcrumb"/}
+	<h4 class="page-title b-0">用户列表</h4>
+
+	<div class="listview list-container">
+		<header class="listview-header media">
+			<ul class="list-inline list-mass-actions pull-left">
+				<li>
+					<a data-toggle="modal" href="{:url('back/User/add')}" title="添加用户" class="tooltips">
+						<i class="sa-list-add"></i>
+					</a>
+				</li>
+			</ul>
+
+			<div class="clearfix"></div>
+		</header>
+		<div class="table-responsive">
+			<table class="table  table-bordered table-hover">
+				<tr>
+					<th>ID</th>
+					<th>姓名</th>
+					<th>用户组</th>
+					<th>状态</th>
+
+					<th>操作</th>
+				</tr>
+				{volist name="userRows" id="vo"}
+				<tr>
+					<td>{$vo.zid}</td>
+					<td>
+						{$vo.name}
+					</td>
+					<td>
+						{$vo.title}
+					</td>
+					<td>
+						{$vo.status}
+					</td>
+					<td>
+						<a class="btn btn-xs btn-default" href="{:url('back/user/edit',['zid'=>$vo['zid']])}">编辑</a>
+						<a class="btn btn-xs btn-default delete" href="{:url('back/user/destroy',['zid'=>$vo['zid']])}">删除</a>
+					</td>
+				</tr>
+				{/volist}
+			</table>
+		</div>
+		<div class="panel-footer text-center">
+
+		</div>
+	</div>
+</section>

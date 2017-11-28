@@ -1,0 +1,161 @@
+{layout name="layout" /}
+
+<!-- Content -->
+<section id="content" class="container">
+	<!-- Breadcrumb -->
+	{include file="public/breadcrumb"/}
+	<h4 class="page-title b-0">渠道查询</h4>
+
+	<div class="listview list-container">
+		<header class="listview-header media">
+			<ul class="list-inline list-mass-actions pull-left">
+				<!-- <li>
+					<a data-toggle="modal" href="{:url('back/channeldao/add')}" title="Add" class="tooltips">
+						<i class="sa-list-add"></i>新增渠道
+					</a>
+				</li>
+				<li class="show-on" style="display: none;">
+					<a href="" title="Delete" class="tooltips">
+						<i class="sa-list-delete"></i>
+					</a>
+				</li> -->
+			</ul>
+			<div class="clearfix"></div>
+		</header>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">渠道查询</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12">
+									
+							</div>
+						</div>
+						<form action="{:url('back/channeldao/search')}" enctype="multipart/form-data" class="form-horizontal ajax-form" method="post">
+							<div class="table-responsive">
+								<div class="form-group">
+									<label for="inputname" class="col-sm-1 control-label">渠道号</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" name="channel_num" value="{$channel_num ? $channel_num : '';}" id="inputname" placeholder="渠道号">
+									</div>
+								</div>
+								<hr class="whiter m-t-10" />
+								<div class="form-group">
+									<label for="inputname" class="col-sm-1 control-label">交易起始时间</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control date" name="start_time" value="{$start_time ? $start_time : '';}" id="inputname" placeholder="交易起始时间">
+									</div>
+								</div>
+								<hr class="whiter m-t-10" />
+								<div class="form-group">
+									<label for="inputname" class="col-sm-1 control-label">交易结束时间</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control date" name="end_time" value="{$end_time ? $end_time : '';}" id="inputname" placeholder="交易结束时间">
+									</div>
+								</div>
+								<hr class="whiter m-t-10" />
+								<div class="form-group">
+									<label for="" class="col-sm-1 control-label">状态</label>
+									<div class="col-sm-4">
+										<select name="draw_status" class="form-control">
+											    <option value="1" {if condition="$draw_status eq 1"/} selected="true" {/if}>成功</option>
+											    <option value="2" {if condition="$draw_status eq 2"/} selected="true" {/if}>失败</option>
+											    <option value="3" {if condition="$draw_status eq 3"/} selected="true" {/if}>积分不足</option>
+											    <option value="4" {if condition="$draw_status eq 4"/} selected="true" {/if}>异常</option>
+										</select>
+									</div>
+								</div>
+								<hr class="whiter m-t-10" />
+								<div class="form-group">
+									<label for="inputname" class="col-sm-1 control-label">商品名称</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" name="goods_name" value="{$goods_name ? $goods_name : '';}" id="inputname" placeholder="商品名称">
+									</div>
+								</div>
+								<br><br/>
+								<div class="form-group">
+									<div class="col-sm-offset-1 col-sm-9">
+										<button type="submit" class="btn btn-primary">查询</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12">
+									
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table  table-bordered table-hover">
+								<tr>
+									<th>ID</th>
+									<th>渠道号</th>
+									<th>订单号</th>
+									<th>手机号</th>
+									<th>商品名称</th>
+									<th>消耗积分</th>
+									<th>交易时间</th>
+									<th>状态</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+
+								{volist name="dataList" id="dataList"}
+								<tr>
+									<td>{$dataList['id']}</td>
+									<td>{$dataList['channel_num']}</td>
+									<td>{$dataList['order_id']}</td>
+									<td>{$dataList['user_phone']}</td>
+									<td>{$dataList['goods_name']}</td>
+									<td>{$dataList['reduce_integral']}</td>
+									<td>{$dataList['create_date']}</td>
+									<td>
+										{switch name="dataList['draw_status']"}
+										    {case value="1" break="0或1"}成功{/case}
+										    {case value="2"}失败{/case}
+										    {case value="3"}积分不足{/case}
+										    {case value="4"}异常{/case}
+										{/switch}
+									</td>
+									<td></td>
+									<td>
+										<a class="btn btn-xs btn-default" href="{:url('channeldao/message')}?order_id={$dataList['order_id']}">短信详情</a>
+									</td>
+								</tr>
+								{/volist}
+							</table>
+						</div>
+					</div>
+					<div class="panel-footer text-center">
+						{$page}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{include file="public/js"/}
+<script>
+    //日期/时间选择器
+    $('.date').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale:'zh-cn',
+        showTodayButton: true
+    });
+    //日期/时间选择器
+    $('.date2').datetimepicker({
+        format: 'YYYY',
+        locale:'zh-cn',
+        showTodayButton: true
+    });
+    
+</script>
+<script>
+	$(document).ready(function(){
+	  	$(".fc-header").hide();
+	  	$(".fc-content").hide();
+	});
+</script>
